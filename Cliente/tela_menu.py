@@ -30,11 +30,7 @@ def main():
     base_dir = os.path.dirname(__file__)
     candidates = [
         os.path.join(base_dir, 'background1.png'),
-        os.path.join(base_dir, 'background1.jpg'),
         os.path.join(base_dir, '..', 'assents', 'background1.png'),
-        os.path.join(base_dir, '..', 'assents', 'background1.jpg'),
-        os.path.join(base_dir, '..', 'assets', 'background1.png'),
-        os.path.join(base_dir, '..', 'assets', 'background1.jpg'),
     ]
     background_image = None
     for p in candidates:

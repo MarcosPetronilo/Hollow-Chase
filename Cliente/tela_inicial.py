@@ -8,7 +8,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("THE HOLLOW CHASE")
 
-    # Carrega background
+    # diretorio base e background
     base_dir = os.path.dirname(__file__)
     bg_path = os.path.join(base_dir, '..', 'assents', 'background.png')
     background = None
@@ -19,6 +19,27 @@ def main():
         except Exception as e:
             print(f"Erro ao carregar background: {e}")
             background = None
+
+    # Tenta carregar inimigo3 (depois de definir base_dir e inicializar pygame)
+    inimigo3_img = None
+    inimigo3_path = os.path.join(base_dir, '..', 'assents', 'inimigo3.png')
+    if os.path.isfile(inimigo3_path):
+        try:
+            inimigo3_img = pygame.image.load(inimigo3_path).convert_alpha()
+            # aumenta o tamanho do inimigo3 para ficar mais visível na tela inicial
+            inimigo3_img = pygame.transform.scale(inimigo3_img, (140, 140))
+        except Exception as e:
+            print(f"Erro ao carregar inimigo3: {e}")
+
+    # Tenta carregar ichigo1 (lado esquerdo) com mesmo tamanho que inimigo3
+    ichigo1_img = None
+    ichigo1_path = os.path.join(base_dir, '..', 'assents', 'ichigo1.png')
+    if os.path.isfile(ichigo1_path):
+        try:
+            ichigo1_img = pygame.image.load(ichigo1_path).convert_alpha()
+            ichigo1_img = pygame.transform.scale(ichigo1_img, (140, 140))
+        except Exception as e:
+            print(f"Erro ao carregar ichigo1: {e}")
 
     # Fonte do botão
     try:
@@ -66,6 +87,26 @@ def main():
             screen.blit(background, (0, 0))
         else:
             screen.fill((245, 245, 247))
+
+        # posição base (mesma para ambos)
+        y = int(SCREEN_HEIGHT * 0.36)
+
+        # desenha ichigo1 à esquerda (mesma altura e tamanho do inimigo3)
+        if ichigo1_img:
+            x_left = SCREEN_WIDTH // 2 - 180 - ichigo1_img.get_width()
+            if x_left < 20:
+                x_left = 20
+            screen.blit(ichigo1_img, (x_left, y))
+
+        # desenha inimigo3 à direita
+        if inimigo3_img:
+            # posiciona o inimigo mais para baixo, ao lado do título
+            # coloca-o próximo ao centro-direita, perto do título principal
+            x = SCREEN_WIDTH // 2 + 180
+            # ajusta se extrapolar a borda direita
+            if x + inimigo3_img.get_width() + 20 > SCREEN_WIDTH:
+                x = SCREEN_WIDTH - inimigo3_img.get_width() - 40
+            screen.blit(inimigo3_img, (x, y))
 
         # botão START
         mx, my = pygame.mouse.get_pos()
