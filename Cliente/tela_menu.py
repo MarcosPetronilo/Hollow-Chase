@@ -9,7 +9,7 @@ def main():
     SCREEN_WIDTH = 800
     SCREEN_HEIGHT = 600
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("THE HOLLOW CHASE")
+    pygame.display.set_caption("")
 
     # Cores
     WHITE = (255, 255, 255)
@@ -67,7 +67,6 @@ def main():
             screen.fill(BLACK)
 
         # Desenha o Título
-        draw_text("THE HOLLOW CHASE", title_font, WHITE, screen, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4)
 
         # Desenha as opções em horizontal
         total_width = 0
