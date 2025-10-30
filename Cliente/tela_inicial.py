@@ -31,16 +31,15 @@ def main():
         except Exception as e:
             print(f"Erro ao carregar inimigo3: {e}")
 
-    # Tenta carregar ichigo1 (lado esquerdo) com mesmo tamanho que inimigo3
-    ichigo1_img = None
-    ichigo1_path = os.path.join(base_dir, '..', 'assents', 'ichigo1.png')
-    if os.path.isfile(ichigo1_path):
+    # Tenta carregar sprite_ichigo_direita (lado esquerdo) com mesmo tamanho que inimigo3
+    sprite_ichigo_direita_img = None
+    sprite_ichigo_direita_path = os.path.join(base_dir, '..', 'assents', 'sprite_ichigo_direita.png')
+    if os.path.isfile(sprite_ichigo_direita_path):
         try:
-            ichigo1_img = pygame.image.load(ichigo1_path).convert_alpha()
-            ichigo1_img = pygame.transform.scale(ichigo1_img, (140, 140))
+            sprite_ichigo_direita_img = pygame.image.load(sprite_ichigo_direita_path).convert_alpha()
+            sprite_ichigo_direita_img = pygame.transform.scale(sprite_ichigo_direita_img, (140, 140))
         except Exception as e:
             print(f"Erro ao carregar ichigo1: {e}")
-
     # Fonte do botão
     try:
         start_font = pygame.font.Font(pygame.font.match_font('arial'), 48)
@@ -91,12 +90,12 @@ def main():
         # posição base (mesma para ambos)
         y = int(SCREEN_HEIGHT * 0.36)
 
-        # desenha ichigo1 à esquerda (mesma altura e tamanho do inimigo3)
-        if ichigo1_img:
-            x_left = SCREEN_WIDTH // 2 - 180 - ichigo1_img.get_width()
+        # desenha sprite_ichigo_direita à esquerda (mesma altura e tamanho do inimigo3)
+        if sprite_ichigo_direita_img:
+            x_left = SCREEN_WIDTH // 2 - 180 - sprite_ichigo_direita_img.get_width()
             if x_left < 20:
                 x_left = 20
-            screen.blit(ichigo1_img, (x_left, y))
+            screen.blit(sprite_ichigo_direita_img, (x_left, y))
 
         # desenha inimigo3 à direita
         if inimigo3_img:

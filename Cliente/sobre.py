@@ -107,7 +107,7 @@ def main():
 					max_offset = min(0, SCREEN_HEIGHT - content_height)
 					offset_y = max(offset_y - 40, max_offset)
 			elif event.type == pygame.MOUSEBUTTONDOWN:
-				if event.button == 1:  # clique esquerdo
+				if event.button == 1: 
 					if hover_voltar:
 						running = False
 						try:
